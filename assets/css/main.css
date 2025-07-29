@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/aspect-ratio";
+
+/* Основной фон и базовая вёрстка */html, body {
+  font-family: "Manrope", sans-serif;
+  overflow-x: hidden; 
+}
+
+.background {
+  background: linear-gradient(to bottom, #1a003d, #280757, #4a008a);
+  z-index: 1;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}

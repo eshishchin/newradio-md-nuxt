@@ -1,0 +1,361 @@
+@import "tailwindcss";
+
+/* Основной фон и базовая вёрстка */html, body {
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  background: linear-gradient(to bottom, #1a003d, #280757, #4a008a);
+  min-height: 110vh;
+  background-attachment: fixed;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  overflow-y: auto;
+  overflow-x: hidden; 
+  z-index: 1;
+}
+
+/* Анимации звезд и планет */
+.stars, .planets {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite alternate ease-in-out;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: float 8s infinite alternate ease-in-out;
+  background: radial-gradient(circle at 30% 30%, #a806bd, #100026);
+}
+
+@keyframes float {
+  0% { transform: translateY(-10px); }
+  100% { transform: translateY(10px); }
+}
+
+.logo-geo-frequency {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.logo { 
+  display: block;
+  max-width: 500px;
+  height: auto;
+}
+
+.main {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+}
+
+/* Плеер */
+.player-wrapper {
+  background: #2e0863;
+  border: 2px solid rgb(108, 2, 230);
+  box-shadow: 0 0 10px rgb(108, 2, 230);
+  backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 80px;
+  padding: 20px 13vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(15px, 11vw, 250px);
+  flex-direction: row;
+  z-index: 2;
+}
+
+.radio-player {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Now playing */
+.now-playing {
+  display: flex;
+  color: white;
+}
+
+.now-playing-body {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.now-playing img {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.now-playing .text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  color: white;
+  line-height: 1.4;
+  position: relative;
+
+}
+
+.now-playing .label {
+  color: #ff2cc3;
+  text-shadow: 0 0 1px #ff2cc379, 0 0 10px #ff2cc375; 
+}
+
+.now-playing .text .artist {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: left;
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  letter-spacing: -1;
+}
+
+.now-playing .text .title {
+  color: 	#cccccc;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  text-align: left;
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  letter-spacing: -1;
+
+}
+
+.now-playing .cover {
+  width: 70px;
+  height: 70px;
+  border: 2px solid #ff2cc3;
+  box-shadow: 0 0 1px #ff2cc379, 0 0 10px #ff2cc375;
+}
+
+.header-menu-wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100px;
+  padding: 0 12.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 100px;
+  gap: clamp(15px, 43.3vw, 1000px);
+  flex-direction: row;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.toggle-new-songs-title {
+  color: rgba(255, 255, 255, 0.767);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  background: none;
+  border: none;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 13px;
+}
+
+.toggle-new-songs-title:hover {
+  color: #d40000;
+}
+
+/* Соцсети и кнопки */
+
+.cover-wrapper {
+  position: relative;
+  display: inline-block;
+
+}
+
+.cover {
+  display: block;
+  width: 100%;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+/* при наведении — показываем */
+.cover-wrapper:hover .play-overlay {
+  opacity: 1;
+}
+
+/* если играет — показываем даже без наведения */
+.cover-wrapper.playing .play-overlay {
+  opacity: 1;
+}
+
+.play-icon,
+.pause-icon {
+  fill: white;
+  width: 40px;
+  height: 40px;
+  display: none;
+}
+
+/* когда обложка НЕ в состоянии playing — показываем PLAY */
+.cover-wrapper:not(.playing) .play-icon {
+  display: block;
+}
+
+/* когда обложка в состоянии playing — показываем PAUSE */
+.cover-wrapper.playing .pause-icon {
+  display: block;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 13vw;
+  overflow: hidden;
+
+}
+
+.now-played-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 0 13vw;
+  margin-bottom: 1.3vw;
+  overflow: hidden;
+  gap: 25px;
+
+}
+
+.now-played-title {
+  color: white;
+  font-size: 1.1rem;
+  border-right: 1px solid rgb(255, 255, 255);
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.now-played-title:hover {
+  color: 	#ff2cc3;
+  text-shadow: 0 0 5px #ff2cc379, 0 0 10px #ff2cc375;
+}
+
+.footer-wrapper {
+  background: #6601a1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 120px;
+  padding: 0px 13vw;
+  gap: 30px;
+  overflow: visible;
+  position: relative;
+  gap: clamp(15px, 40vw, 1000px);
+}
+
+.logo-license {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo-footer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.logo-footer-small {
+  display: block;
+  max-width: 500px;
+  width: 100px;
+  height: auto;
+}
+.logo-footer img {
+ opacity: 0.5;
+}
+
+.license-text {
+  display: flex;
+  font-size: 1rem;
+  text-align: left;
+  align-items: center;
+  color: white;
+  opacity: 0.5;
+  font-family: Helvetica, sans-serif;
+  width: 250px;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
